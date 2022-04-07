@@ -1,101 +1,118 @@
 import React from "react";
 import "../css/AboutUs.css";
-import team from "../Assets/img/team.jpg";
+import wash from "../Assets/img/wash.png";
+import iron from "../Assets/img/iron.png";
+import hanger from "../Assets/img/hanger.png";
+import laundry from "../Assets/img/laundry.png";
+import about from "../Assets/img/about.jpg";
+
+const OurService = (props) => {
+  return (
+    <div className="col-sm-6 item">
+      <div className="row">
+        <div className="col-md-12 col-lg-5 text-center">
+          <img
+            className="img-fluid"
+            src={props.ColImage}
+            alt=""
+            style={{ height: "150px" }}
+          />
+        </div>
+        <div className="col">
+          <h3 className="name">
+            <strong>{props.ColHeader}</strong>
+          </h3>
+          <p className="description">{props.ColDescribe}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 function AboutUs() {
   return (
     <div>
-      <div>
-        <div className="container">
-          <div className="row" style={{ margin: "30px 0px" }}>
-            <div className="col" style={{ margin: "31px" }}>
-              <p style={{ color: "#0B0957" }}>
-                <strong>Stay Home, Stay Safe with Us</strong>
-              </p>
-              <p className="about-us">
-                Medicare has a team of skillful senior pathologists and over
-                3000 technicians delivering diagnostic solutions in the areas of
-                routine, semi specialty and super specialty domains. <br />
-                We are best known for the proficiency and accuracy of our
-                reports
-                <br />
-                We offer a comprehensive range of 4000+ clinical laboratory
-                tests and profiles, which are used for prediction, early
-                detection, diagnostic screening, confirmation and/or monitoring
-                of the disease.
-                <br />
-              </p>
-            </div>
-            <div className="col" style={{ textAlign: "center" }}>
-              <i
-                className="fas fa-microscope"
-                style={{
-                  fontSize: "49px",
-                  textAlign: "center",
-                  margin: "21px",
-                  marginTop: "66px",
-                  color: "#0B0957",
-                }}
-              ></i>
-              <i
-                className="fa fa-building"
-                style={{
-                  fontSize: "49px",
-                  margin: "21px",
-                  marginTop: "66px",
-                  textAlign: "center",
-                  color: "#0B0957",
-                }}
-              ></i>
-              <p style={{ color: "#5E5B5B" }}>200+ Advanced Labs</p>
-              <p style={{ color: "#5E5B5B" }}>
-                Trusted By Leading Doctors and Hospitals
-                <br />
-                <br />
-              </p>
-            </div>
+      <section className="projects-horizontal">
+        <div className="container" style={{ fontFamily: "Sora, sans-serif" }}>
+          <div className="intro">
+            <h2
+              className="text-center"
+              style={{ fontFamily: "Sora, sans-serif" }}
+            >
+              <strong>About Our Services</strong>
+            </h2>
           </div>
-          <div className="col" style={{ margin: "31px" }}>
-            <p style={{ color: "#0B0957" }}>
-              <strong>About our Services</strong>
-            </p>
-            <p className="about-us">
-              We have a variety of specialised, advanced tests and technologies
-              to offer you the correct diagnosis.
-              <br />
-              Our new home visit service has boosted the process more faster and
-              has helped over 670+ patients.
-              <br />
-              Accuracy has always been a top priority for MediCare.
-              <br />
-              Covid-19 protocols and other health protocols are followed
-              strictly by us.
-              <br />
-            </p>
-
-            <section>
-              <div className="text-center">
-                <img
-                  className="img-fluid"
-                  loading="lazy"
-                  src={team}
-                  alt="about-team"
-                  style={{
-                    width: "700px",
-                    height: "360px",
-                  }}
-                />
-              </div>
-            </section>
-            <h1 className="outro">
-              “WE CARE FOR YOUR CONVIENENCE”
-              <br />
-            </h1>
+          <div className="row projects">
+            <OurService
+              ColImage={hanger}
+              ColHeader="Dry cleaning"
+              ColDescribe="Reliable dry cleaning services with a professional touch and input. We use quality solvents for the care of your clothes."
+            />
+            <OurService
+              ColImage={wash}
+              ColHeader="Wash and Fold"
+              ColDescribe="Washing accompanied with good detergent and our adaptable washing machines set up in a clean environment."
+            />
+            <OurService
+              ColImage={iron}
+              ColHeader="Iron and Steam press"
+              ColDescribe="Only iron or steam press depending on the clothing material will be carried out on one piece each. Ironing will be done on an adjustable voltage setting"
+            />
+            <OurService
+              ColImage={laundry}
+              ColHeader="Complete Laundry"
+              ColDescribe="Complete laundry includes all the services under one hook. Wash or dry clean will be done accordingly and so will be the iron or steam press option."
+            />
           </div>
         </div>
-      </div>
+      </section>
+      <section
+        className="about-section"
+        style={{
+          fontFamily: "Sora, sans-serif",
+          marginTop: "20px",
+        }}
+      >
+        <div className="intro">
+          <h2 className="text-center" style={{ marginTop: "50px" }}>
+            <strong>About TidyUp</strong>
+          </h2>
+        </div>
+        <div
+          className="container"
+          style={{ height: "400px", marginTop: "30px" }}
+        >
+          <div className="row" style={{ height: "300px" }}>
+            <div
+              className="col-md-5 d-flex justify-content-center"
+              style={{
+                background: "#acbfe6",
+                height: "300px",
+                paddingtop: "20px",
+              }}
+            >
+              <img
+                src={about}
+                style={{ height: "auto", width: "100%", marginTop: "31px" }}
+                alt=""
+              />
+            </div>
+            <div className="col" style={{ height: "300px" }}>
+              <p className="lead" style={{ height: "300px", padding: "20px" }}>
+                TidyUp brings laundry services online for the convenience of
+                their customers and to help them get their laundry done without
+                having any obstacle. Professionals and the staff at TidyUp carry
+                out the laundry process with good care and in an hygienic
+                environment. We make sure that our expertise and experience
+                never fails to disappoint our customer
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
 export default AboutUs;
+

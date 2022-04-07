@@ -1,78 +1,68 @@
-.about-us {
-  color: #5e5b5b;
-  font-family: Roboto;
-  font: 18px;
-}
-.outro {
-  color: #0b0957;
-  text-align: center;
-  margin: 78px;
-  font-size: 28px;
+/* About */
+.projects-horizontal {
+  color: #313437;
+  background-color: #fff;
 }
 
-.highlight-blue {
-  color: #fff;
-  background-color: #1e6add;
-  padding: 50px 0;
+.projects-horizontal p {
+  color: #7d8285;
 }
 
-.highlight-blue p {
-  color: #fff;
-  line-height: 1.5;
+.projects-horizontal h2 {
   font-weight: bold;
-  background-color: #0c09572f;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  color: inherit;
 }
 
-.highlight-blue h2 {
-  color: #fff;
-  font-weight: bold;
-  margin-bottom: 25px;
-  line-height: 1.5;
-  padding-top: 0;
-  margin-top: 0;
-  background-color: #0c09572f;
+@media (max-width:767px) {
+  .projects-horizontal h2 {
+    margin-bottom: 25px;
+    padding-top: 25px;
+    font-size: 24px;
+  }
+  .about-section{
+    height: 700px;
+  }
 }
 
-.highlight-blue .intro {
+.projects-horizontal .intro {
   font-size: 16px;
   max-width: 500px;
-  margin: 0 auto 25px;
+  margin: 0 auto 10px;
 }
 
-.highlight-blue .buttons {
-  text-align: center;
+.projects-horizontal .projects {
+  padding-bottom: 40px;
 }
 
-.highlight-blue .buttons .btn {
-  padding: 16px 32px;
-  margin: 6px;
-  border: none;
-  background-color: #0b0957;
-  box-shadow: none;
-  text-shadow: none;
-  opacity: 1;
-  text-transform: uppercase;
+.projects-horizontal .item {
+  padding-top: 60px;
+  min-height: 160px;
+}
+
+@media (max-width:767px) {
+  .projects-horizontal .item {
+    padding-top: 40px;
+    min-height: 160px;
+  }
+}
+
+.projects-horizontal .item .name {
+  font-size: 18px;
   font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 0.4px;
-  line-height: 1;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: inherit;
 }
 
-.highlight-blue .buttons .btn:hover {
-  opacity: 0.9;
+@media (max-width:991px) {
+  .projects-horizontal .item .name {
+    margin-top: 22px;
+  }
 }
 
-.highlight-blue .buttons .btn:active {
-  transform: translateY(1px);
-}
-
-.highlight-blue .buttons .btn-primary,
-.highlight-blue .buttons .btn-primary:active {
-  border-radius: 6px;
-  color: #ebeff1;
-  box-shadow: none;
-  text-shadow: none;
-  padding: 14px 24px;
-  background: #0b0957;
-  transition: background-color 0.25s;
+.projects-horizontal .item .description {
+  font-size: 15px;
+  margin-bottom: 0;
 }
