@@ -4,8 +4,8 @@ import { Link, useHistory } from "react-router-dom";
 import { db, UpdateTest, CreateTest } from "../Firebase/Firebase";
 
 function AdminEditPage(props) {
-  const { availableTest } = props;
-  console.log(availableTest.id);
+  const { availableOrders } = props;
+  console.log(availableOrders.id);
   const TestName = useRef();
   const Price = useRef();
   const Location = useRef();
@@ -14,8 +14,8 @@ function AdminEditPage(props) {
 
   function handleUpload(e) {
     e.preventDefault();
-    if (availableTest) {
-      UpdateTest(availableTest.id, {
+    if (availableOrders) {
+      UpdateTest(availableOrders.id, {
         name: TestName.current.value,
         price: Price.current.value,
         location: Location.current.value,
@@ -35,12 +35,12 @@ function AdminEditPage(props) {
 
   const [testInfo, setTestInfo] = useState({});
   useEffect(() => {
-    if (availableTest) {
+    if (availableOrders) {
       const fetchData = async () => {
         try {
           const response = await db
-            .collection("available_tests")
-            .doc(availableTest.id)
+            .collection("available_orders")
+            .doc(availableOrders.id)
             .get();
 
           console.log("response", response);
@@ -83,8 +83,8 @@ function AdminEditPage(props) {
             style={{ background: "rgb(248,248,249)" }}
             onSubmit={handleUpload}
           >
-            {availableTest && <h2 className="text-center">Edit tests</h2>}
-            {!availableTest && <h2 className="text-center">Add New Test</h2>}
+            {availableOrders && <h2 className="text-center">Edit tests</h2>}
+            {!availableOrders && <h2 className="text-center">Add New Test</h2>}
 
             <div className="form-group mb-3">
               <input
@@ -116,12 +116,14 @@ function AdminEditPage(props) {
                 <select
                   class="form-select"
                   ref={Location}
-                  defaultValue={availableTest.location}
+                  defaultValue={availableOrders.location}
                   id="inputGroupSelect01"
                   required
                 >
-                  <option value="home">Home</option>
-                  <option value="centre">Centre</option>
+                  <option value="dryclean">DryClean</option>
+                  <option value="wash">Wash</option>
+                  <option value="iron">Iron</option>
+                  <option value="laundry">Laundry</option>
                 </select>
               </div>
             )}

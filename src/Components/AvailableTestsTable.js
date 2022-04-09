@@ -12,7 +12,7 @@ function AvailableTestsTable(props) {
   function deleteTest(test) {
     console.log(test.id);
     db
-      .collection("available_tests")
+      .collection("available_orders")
       .doc(test.id)
       .delete()
       .then(() => {
@@ -27,7 +27,7 @@ function AvailableTestsTable(props) {
   const fetchData = async () => {
     try {
       const response = db
-        .collection("available_tests")
+        .collection("available_orders")
         .onSnapshot((querySnapshot) => {
           getTestsFromFirebase.length = 0;
           querySnapshot.forEach((doc) => {

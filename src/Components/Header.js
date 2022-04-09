@@ -7,7 +7,8 @@ import logo from "../Assets/img/logo.png";
 
 function Header() {
   let Homepage = "/";
-  let Book_Appointment_Home = "/AppointmentHome";
+  let Service_Page = "/Services";
+  // let Book_Appointment_Home = "/AppointmentHome";
   let Get_Report = "/GetReport";
   let About_Us = "/AboutUs";
   let Login_User = "/Login";
@@ -31,8 +32,8 @@ function Header() {
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
-              <Link className="nav-item nav-link" to={Book_Appointment_Home}>
-                Book Appointment
+              <Link className="nav-item nav-link" to={Service_Page}>
+                Services Offered
               </Link>
               <Link className="nav-item nav-link" to={Get_Report}>
                 Get Report

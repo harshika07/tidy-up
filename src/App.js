@@ -17,6 +17,11 @@ import UserTable from "./Components/UserTable";
 import CurrentTestsTable from "./Components/CurrentTestsTable";
 import GetReport from "./Components/GetReport";
 import AdminTable from "./Components/AdminTable";
+import Services from "./Components/Services";
+import DryClean from "./Components/DryClean";
+import Iron from "./Components/Iron";
+import Wash from "./Components/Wash";
+import Laundry from "./Components/Laundry";
 
 import AdminEditPage from "./Components/AdminEditPage";
 
@@ -37,6 +42,11 @@ function App() {
   let Appointment_Home_Form = "/AppointHomeForm";
   let Book_Appointment_Centre = "/AppointmentCentre";
   let Appointment_Centre_Form = "/AppointCentreForm";
+  let Service_Page = "/Services";
+  let DryClean_Page = "/dryclean";
+  let Laundry_Page = "/laundry";
+  let Wash_Page = "/wash";
+  let Iron_Page = "/iron";
   let About_Us = "/AboutUs";
   let Get_Report = "/GetReport";
   let Register_User = "/Register";
@@ -77,10 +87,10 @@ function App() {
   };
 
   const { products } = data;
-  const [availableTest, setAvailableTest] = useState([]);
+  const [availableOrders, setAvailableOrders] = useState([]);
   const addTest = (test) => {
     console.log("insode addTest method");
-    setAvailableTest(test);
+    setAvailableOrders(test);
   };
   const [currentTest, setCurrentTest] = useState([]);
   const addCurrentTest = (test) => {
@@ -150,6 +160,51 @@ function App() {
                 removeAll={removeAll}
               />
             </Route>
+            <Route exact path={Service_Page}>
+              <Services
+                products={products}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                cartItems={cartItems}
+                removeAll={removeAll}
+              />
+            </Route>
+            <Route exact path={Laundry_Page}>
+              <Laundry
+                products={products}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                cartItems={cartItems}
+                removeAll={removeAll}
+              />
+            </Route>
+            <Route exact path={Iron_Page}>
+              <Iron
+                products={products}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                cartItems={cartItems}
+                removeAll={removeAll}
+              />
+            </Route>
+            <Route exact path={DryClean_Page}>
+              <DryClean
+                products={products}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                cartItems={cartItems}
+                removeAll={removeAll}
+              />
+            </Route>
+            <Route exact path={Wash_Page}>
+              <Wash
+                products={products}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                cartItems={cartItems}
+                removeAll={removeAll}
+              />
+            </Route>
             <Route exact path={Book_Appointment_Centre}>
               <AppointmentCentre
                 products={products}
@@ -201,7 +256,7 @@ function App() {
             ></AdminRoute>
             <PrivateRoute exact path={Admin_AvailabeTests_table}>
               <AvailableTestsTable
-                availableTest={availableTest}
+                availableTest={availableOrders}
                 addTest={addTest}
               />
             </PrivateRoute>
@@ -212,7 +267,7 @@ function App() {
               />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Edit_Page}>
-              <AdminEditPage availableTest={availableTest} addTest={addTest} />
+              <AdminEditPage availableTest={availableOrders} addTest={addTest} />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Upload_Report}>
               <AdminUploadReports

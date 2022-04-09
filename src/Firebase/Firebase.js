@@ -57,13 +57,13 @@ export async function AddNewTestForUser(userId, TestInfo, userInfo) {
     await db
       .collection("users")
       .doc(userId)
-      .collection("tests")
+      .collection("orders")
       .doc(userId + time + TestInfo.name)
       .set(userInfo, TestInfo);
     await db
       .collection("users")
       .doc(userId)
-      .collection("tests")
+      .collection("orders")
       .doc(userId + time + TestInfo.name)
       .update({ testname: TestInfo.name });
     // console.log(response);
@@ -83,7 +83,7 @@ export async function AddNewTestForAdmin(userId, TestInfo, userInfo) {
     // console.log(userId + time + TestInfo.name);
     // console.log(userInfo, TestInfo);
     await db
-      .collection("current_tests")
+      .collection("current_orders")
       .doc(userId + time + TestInfo.name)
       .set(userInfo, TestInfo);
     // console.log(response);
@@ -96,7 +96,7 @@ export async function AddNewTestForAdmin(userId, TestInfo, userInfo) {
 export async function CreateTest(docId, data) {
   try {
     // console.log("creating data with " + docId);
-    await db.collection("available_tests").doc(docId).set(data);
+    await db.collection("available_orders").doc(docId).set(data);
   } catch (err) {
     console.error(err);
   }
@@ -105,7 +105,7 @@ export async function CreateTest(docId, data) {
 export async function UpdateTest(docId, data) {
   try {
     console.log("updating data with " + docId);
-    await db.collection("available_tests").doc(docId).update(data);
+    await db.collection("available_orders").doc(docId).update(data);
   } catch (err) {
     console.error(err);
   }
