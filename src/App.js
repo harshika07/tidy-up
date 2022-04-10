@@ -113,6 +113,7 @@ function App() {
       console.log("landed in wrong block");
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
+    
   };
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -256,7 +257,7 @@ function App() {
             ></AdminRoute>
             <PrivateRoute exact path={Admin_AvailabeTests_table}>
               <AvailableTestsTable
-                availableTest={availableOrders}
+                availableOrders={availableOrders}
                 addTest={addTest}
               />
             </PrivateRoute>
@@ -267,7 +268,7 @@ function App() {
               />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Edit_Page}>
-              <AdminEditPage availableTest={availableOrders} addTest={addTest} />
+              <AdminEditPage availableOrders={availableOrders} addTest={addTest} />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Upload_Report}>
               <AdminUploadReports

@@ -35,10 +35,10 @@ function AppointCentreForm(props) {
 
   const nameRef = useRef();
   const emailRef = useRef();
-  const ageRef = useRef();
-  const drnameRef = useRef();
+  const addressRef = useRef();
+  
   const phoneRef = useRef();
-  const genderRef = useRef();
+  
 
   const dateRef = useRef();
   const slotRef = useRef();
@@ -52,10 +52,8 @@ function AppointCentreForm(props) {
       const userInfo = {
         name: nameRef.current.value,
         email: emailRef.current.value,
-        age: ageRef.current.value,
-        doctorname: drnameRef.current.value,
         phone: phoneRef.current.value,
-        gender: genderRef.current.value,
+        address: addressRef.current.value,
         date: dateRef.current.value,
         slot: slotRef.current.value,
         location: "centre",
@@ -142,38 +140,7 @@ function AppointCentreForm(props) {
                 disabled="true"
               />
             </div>
-            <div class="input-group mb-3">
-              <label class="input-group-text" for="inputGroupSelect01">
-                Gender
-              </label>
-              {ProfileInfo.gender && (
-                <select
-                  class="form-select"
-                  id="inputGroupSelect01"
-                  ref={genderRef}
-                  defaultValue={ProfileInfo.gender}
-                  required
-                >
-                  <option value="Choose...">Choose...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Others">Others</option>
-                </select>
-              )}
-            </div>
-            <div className="form-group mb-3">
-              <input
-                className="form-control"
-                type="number"
-                name="Age"
-                placeholder="Age"
-                min="10"
-                max="100"
-                maxLength={10} // this is the important line
-                ref={ageRef}
-                required
-              />
-            </div>
+      
             <div className="form-group mb-3">
               <input
                 className="form-control"
@@ -198,16 +165,15 @@ function AppointCentreForm(props) {
               />
             </div>
             <div className="form-group mb-3">
-              <input
+              <textarea
                 className="form-control"
-                type="text"
-                name="dr-name"
-                placeholder="Ref Doctor's Name"
-                ref={drnameRef}
-                required
-              />
+                name="Address"
+                placeholder="Address"
+                rows="14"
+                ref={addressRef}
+                defaultValue={ProfileInfo.address}
+              ></textarea>
             </div>
-
             <div className="d-inline-flex mb-3">
               <input
                 className="form-control"
@@ -262,8 +228,8 @@ function AppointCentreForm(props) {
                       <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th scope="col">Test Name</th>
-                            <th scope="col">price</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>

@@ -5,7 +5,7 @@ import { useAuth } from "../Firebase/AuthContext";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../Assets/img/logo.png";
 
-function Header() {
+function Header(p) {
   let Homepage = "/";
   let Service_Page = "/Services";
   // let Book_Appointment_Home = "/AppointmentHome";
@@ -56,6 +56,23 @@ function Header() {
                   Profile Page
                 </Link>
               )}
+              {currentUser && (
+              <Link to="/AppointCentreForm">
+                <button className="btn btn-primary">
+                  Added {cartItems.length} to cart
+                  {console.log("cartLength " + cartItems.length)}
+                </button>
+              </Link>
+            )}
+            {!currentUser && (
+              <Link to="/Login">
+                <button className="btn btn-danger">
+                  Added {cartItems.length} to cart. Login To Continue!
+                  {console.log("cartLength " + cartItems.length)}
+                </button>
+              </Link>
+            )}
+
             </Nav>
           </Navbar.Collapse>
         </Container>
