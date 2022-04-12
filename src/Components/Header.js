@@ -5,7 +5,8 @@ import { useAuth } from "../Firebase/AuthContext";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../Assets/img/logo.png";
 
-function Header(p) {
+function Header(props) {
+  const {cartItems} = props
   let Homepage = "/";
   let Service_Page = "/Services";
   // let Book_Appointment_Home = "/AppointmentHome";

@@ -5,7 +5,7 @@ import { useAuth } from "../Firebase/AuthContext";
 import { db } from "../Firebase/Firebase";
 
 function DryClean(props) {
-  const { onAdd, onRemove, cartItems, removeAll } = props;
+  const { onAdd, onRemove, cartItems } = props;
   const { currentUser } = useAuth();
 
   const [orders, setorders] = useState([]);
@@ -19,10 +19,11 @@ function DryClean(props) {
     const fetchData = async () => {
       try {
         const response = db
-          .collection("available_tests")
+          .collection("available_orders")
           .onSnapshot((querySnapshot) => {
             console.log("Collection found");
             querySnapshot.forEach((doc) => {
+              console.log(doc);
               if (doc.data().location === "dryclean") {
                 console.log("dryclean found");
                 getDrycleanFromFirebase.push({
@@ -59,7 +60,11 @@ function DryClean(props) {
       >
         <div className="container">
           <div className="row justify-content-center features">
-            <div className="col-sm-6 col-md-5 col-lg-4 item">
+          {orders.map((order => (
+            <div className="col-sm-6 col-md-5 col-lg-4 item"
+            key={order.id}
+            product={order}
+            >
               <div
                 className="box"
                 style={{
@@ -67,8 +72,10 @@ function DryClean(props) {
                   borderRadius: "10px",
                 }}
               > 
-                <h3 className="name">tshirt</h3>
-                <p>&#x20b9;200</p>
+                <h3 className="name">{order.name}</h3>
+                <p>&#x20b9;{order.price}</p>
+
+                {!cartItems.find((x) => x.id === orders.id) && (
                 <button
                   className="btn btn-primary"
                   type="button"
@@ -77,12 +84,30 @@ function DryClean(props) {
                     color: "#ffffff",
                     background: "#3552c8",
                   }}
+                  onClick={() => {
+                    onAdd(orders);
+                    console.log(orders);
+                    console.log(cartItems);
+                  }}
                 >
                   Add
                 </button>
+                )}
+                 {cartItems.find((x) => x.id === test.id) && (
+                        <button
+                          className="btn btn-danger add"
+                          type="button"
+                          onClick={() => onRemove(orders)}
+                        >
+                          Remove
+                        </button>
+                      )}
+                
               </div>
+            
             </div>
           </div>
+          ))}
         </div>
       </section>
       ;

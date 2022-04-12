@@ -137,7 +137,9 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header />
+          <Header 
+          cartItems={cartItems}
+          />
           <Switch>
             <Route exact path={Homepage}>
               <Home />
