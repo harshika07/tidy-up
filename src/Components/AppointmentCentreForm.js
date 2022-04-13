@@ -137,10 +137,10 @@ function AppointCentreForm(props) {
                 placeholder="Name"
                 defaultValue={ProfileInfo.displayName}
                 ref={nameRef}
-                disabled="true"
+                disabled={true}
               />
             </div>
-      
+
             <div className="form-group mb-3">
               <input
                 className="form-control"
@@ -148,7 +148,7 @@ function AppointCentreForm(props) {
                 name="email"
                 placeholder="Email"
                 defaultValue={currentUser.email}
-                disabled="true"
+                disabled={true}
                 ref={emailRef}
               />
             </div>
@@ -189,9 +189,9 @@ function AppointCentreForm(props) {
                 required
               />
             </div>
-            <div class="input-group">
+            <div className="input-group">
               <select
-                class="form-select"
+                className="form-select"
                 id="inputGroupSelect04"
                 aria-label="Example select with button addon"
                 ref={slotRef}
@@ -212,7 +212,7 @@ function AppointCentreForm(props) {
             )}
             {cartItems.length === 0 && (
               <div className="form-group mb-3">
-                <Link className="btn btn-danger mt-3" to="/AppointmentHome">
+                <Link className="btn btn-danger mt-3" to="/dryclean">
                   Select atleast one test
                 </Link>
               </div>
@@ -222,10 +222,10 @@ function AppointCentreForm(props) {
               {cartItems.length === 0 && <div>Cart is empty</div>}
 
               {cartItems.length !== 0 && (
-                <div class="container">
-                  <div class="row">
-                    <div class="col-12">
-                      <table class="table table-bordered">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-12">
+                      <table className="table table-bordered">
                         <thead>
                           <tr>
                             <th scope="col">Product</th>
@@ -243,21 +243,22 @@ function AppointCentreForm(props) {
                               <td className="text-center">
                                 <button
                                   type="button"
-                                  class="btn btn-danger"
+                                  className="btn btn-danger"
                                   onClick={() => {
                                     onRemove(item);
-
                                     Subtract(item.price);
                                     console.log(total);
                                   }}
                                 >
-                                  <i class="far fa-trash-alt"></i>
+                                  <i className="far fa-trash-alt"></i>
                                 </button>
                               </td>
                             </tr>
                           ))}
                         </tbody>
-                        Your total is &#x20b9;{total}
+                        <div className="form-group mb-3">
+                          Your total is &#x20b9;{total}
+                        </div>
                       </table>
                     </div>
                   </div>

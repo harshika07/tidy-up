@@ -6,9 +6,8 @@ import { db } from "../Firebase/Firebase";
 
 function DryClean(props) {
   const { onAdd, onRemove, cartItems } = props;
-  const { currentUser } = useAuth();
 
-  const [orders, setorders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const getDrycleanFromFirebase = [];
 
@@ -33,7 +32,7 @@ function DryClean(props) {
               }
               console.log("reached in DryClean");
             });
-            setorders(getDrycleanFromFirebase);
+            setOrders(getDrycleanFromFirebase);
             console.log(getDrycleanFromFirebase);
             setLoading(false);
           });
@@ -60,54 +59,53 @@ function DryClean(props) {
       >
         <div className="container">
           <div className="row justify-content-center features">
-          {orders.map((order => (
-            <div className="col-sm-6 col-md-5 col-lg-4 item"
-            key={order.id}
-            product={order}
-            >
+            {orders.map((order) => (
               <div
-                className="box"
-                style={{
-                  borderTopColor: "rgb(80,94,108)",
-                  borderRadius: "10px",
-                }}
-              > 
-                <h3 className="name">{order.name}</h3>
-                <p>&#x20b9;{order.price}</p>
-
-                {!cartItems.find((x) => x.id === orders.id) && (
-                <button
-                  className="btn btn-primary"
-                  type="button"
+                className="col-sm-6 col-md-5 col-lg-4 item"
+                key={order.id}
+                product={order}
+              >
+                <div
+                  className="box"
                   style={{
-                    fontFamily: "Sora, sans-serif",
-                    color: "#ffffff",
-                    background: "#3552c8",
-                  }}
-                  onClick={() => {
-                    onAdd(orders);
-                    console.log(orders);
-                    console.log(cartItems);
+                    borderTopColor: "rgb(80,94,108)",
+                    borderRadius: "10px",
                   }}
                 >
-                  Add
-                </button>
-                )}
-                 {cartItems.find((x) => x.id === test.id) && (
-                        <button
-                          className="btn btn-danger add"
-                          type="button"
-                          onClick={() => onRemove(orders)}
-                        >
-                          Remove
-                        </button>
-                      )}
-                
+                  <h3 className="name">{order.name}</h3>
+                  <p>&#x20b9;{order.price}</p>
+
+                  {!cartItems.find((x) => x.id === order.id) && (
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      style={{
+                        fontFamily: "Sora, sans-serif",
+                        color: "#ffffff",
+                        background: "#3552c8",
+                      }}
+                      onClick={() => {
+                        onAdd(order);
+                        console.log(order);
+                        console.log(cartItems.length);
+                      }}
+                    >
+                      Add
+                    </button>
+                  )}
+                  {cartItems.find((x) => x.id === order.id) && (
+                    <button
+                      className="btn btn-danger add"
+                      type="button"
+                      onClick={() => onRemove(order)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
               </div>
-            
-            </div>
+            ))}
           </div>
-          ))}
         </div>
       </section>
       ;

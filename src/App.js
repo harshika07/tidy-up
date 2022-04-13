@@ -88,14 +88,14 @@ function App() {
 
   const { products } = data;
   const [availableOrders, setAvailableOrders] = useState([]);
-  const addTest = (test) => {
+  const addTest = (order) => {
     console.log("insode addTest method");
-    setAvailableOrders(test);
+    setAvailableOrders(order);
   };
   const [currentTest, setCurrentTest] = useState([]);
-  const addCurrentTest = (test) => {
+  const addCurrentTest = (order) => {
     console.log("insode addTest method for currentTest");
-    setCurrentTest(test);
+    setCurrentTest(order);
   };
 
   const [cartItems, setCartItems] = useState([]);
