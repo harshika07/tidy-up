@@ -45,7 +45,7 @@ export async function createUser(userId, user) {
   }
 }
 
-export async function AddNewTestForUser(userId, TestInfo, userInfo) {
+export async function AddNewTestForUser(userId, TestInfo, quantity, location,userInfo,) {
   try {
     // console.log("creating doc with " + userId);
     var today = new Date();
@@ -59,13 +59,13 @@ export async function AddNewTestForUser(userId, TestInfo, userInfo) {
       .doc(userId)
       .collection("orders")
       .doc(userId + time + TestInfo.name)
-      .set(userInfo, TestInfo);
+      .set(userInfo, TestInfo, quantity, location);
     await db
       .collection("users")
       .doc(userId)
       .collection("orders")
       .doc(userId + time + TestInfo.name)
-      .update({ testname: TestInfo.name });
+      .update({ testname: TestInfo.name, quantity: quantity, location: location });
     // console.log(response);
     // console.log("this worked in users");
   } catch (err) {
@@ -73,7 +73,7 @@ export async function AddNewTestForUser(userId, TestInfo, userInfo) {
   }
 }
 
-export async function AddNewTestForAdmin(userId, TestInfo, userInfo) {
+export async function AddNewTestForAdmin(userId, TestInfo,quantity,location, userInfo) {
   try {
     // console.log("creating doc with " + userId);
     var today = new Date();
@@ -85,9 +85,13 @@ export async function AddNewTestForAdmin(userId, TestInfo, userInfo) {
     await db
       .collection("current_orders")
       .doc(userId + time + TestInfo.name)
-      .set(userInfo, TestInfo);
+      .set(userInfo, TestInfo, location,quantity);
     // console.log(response);
     // console.log("this worked in admin");
+    await db
+      .collection("current_orders")
+      .doc(userId + time + TestInfo.name)
+      .update({ testname: TestInfo.name, quantity: quantity, location: location });
   } catch (err) {
     console.error(err);
   }

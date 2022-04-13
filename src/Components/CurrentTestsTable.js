@@ -4,7 +4,7 @@ import { db } from "../Firebase/Firebase";
 import { Link } from "react-router-dom";
 
 function CurrentTestsTable(props) {
-  const { addCurrentTest } = props;
+  const { addcurrentOrders } = props;
   const [tests, setTests] = useState([]);
   const getTestsFromFirebase = [];
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ function CurrentTestsTable(props) {
     const fetchData = async () => {
       try {
         const response = db
-          .collection("current_tests")
+          .collection("current_orders")
           .onSnapshot((querySnapshot) => {
             console.log("Collection found");
             querySnapshot.forEach((doc) => {
@@ -89,7 +89,7 @@ function CurrentTestsTable(props) {
                                 class="btn btn-success"
                                 to="/report"
                                 onClick={() => {
-                                  addCurrentTest(item);
+                                  addcurrentOrders(item);
                                   console.log("after addTest");
                                 }}
                               >

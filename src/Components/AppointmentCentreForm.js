@@ -3,12 +3,9 @@ import "../css/Booking.css";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../Firebase/AuthContext";
 import { useState, useEffect } from "react";
-import {
-  db,
-  auth,
-} from "../Firebase/Firebase";
+import { db, auth } from "../Firebase/Firebase";
 import { AddNewTestForUser, AddNewTestForAdmin } from "../Firebase/Firebase";
-import { Modal } from "react-bootstrap";
+import { Modal, InputGroup, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,27 +15,24 @@ function AppointCentreForm(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const {cartItems, onRemove, removeAll } = props;
-  const {
-    currentUser,
-    setPaymentConfirmed,
-  } = useAuth();
+  const { cartItems, onRemove, removeAll,onAdd } = props;
+  const { currentUser, setPaymentConfirmed } = useAuth();
 
   let total = 0;
-  function Add(price) {
-    total = parseInt(total) + parseInt(price);
+  function Add(price,item) {
+    total = parseInt(total) + parseInt(price)*item.qty;
   }
-  function Subtract(price) {
-    total = parseInt(total) - parseInt(price);
+  function Subtract(price,item) {
+    total = parseInt(total) - parseInt(price)*item.qty;
   }
+  
   const [loading, setLoading] = useState(false);
 
   const nameRef = useRef();
   const emailRef = useRef();
   const addressRef = useRef();
-  
+
   const phoneRef = useRef();
-  
 
   const dateRef = useRef();
   const slotRef = useRef();
@@ -56,12 +50,11 @@ function AppointCentreForm(props) {
         address: addressRef.current.value,
         date: dateRef.current.value,
         slot: slotRef.current.value,
-        location: "centre",
         userId: auth.currentUser.uid,
       };
       cartItems.forEach((item) => {
-        AddNewTestForUser(auth.currentUser.uid, item, userInfo);
-        AddNewTestForAdmin(auth.currentUser.uid, item, userInfo);
+        AddNewTestForUser(auth.currentUser.uid, item, item.qty, item.location, userInfo);
+        AddNewTestForAdmin(auth.currentUser.uid, item, item.qty, item.location, userInfo);
       });
       removeAll();
       setPaymentConfirmed(true);
@@ -230,7 +223,8 @@ function AppointCentreForm(props) {
                           <tr>
                             <th scope="col">Product</th>
                             <th scope="col">Price</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Quantity</th>
+                            {/* <th scope="col">Actions</th> */}
                           </tr>
                         </thead>
                         <tbody>
@@ -238,9 +232,12 @@ function AppointCentreForm(props) {
                             <tr key={item.id}>
                               <td>{item.name}</td>
                               <td>&#x20b9;{item.price}</td>
+                              <button type="button"className="btn btn-danger" onClick={()=>{ onRemove(item)}}><i className="fa fa-minus"></i></button>  
+                              <span id="counting">{item.qty}</span>
+                              <button type="button"className="btn btn-success" onClick={()=>{onAdd(item)}}><i className="fa fa-plus"></i></button>  
                               {console.log(total)}
-                              {Add(item.price)}
-                              <td className="text-center">
+                              {Add(item.price,item)}
+                              {/* <td className="text-center">
                                 <button
                                   type="button"
                                   className="btn btn-danger"
@@ -252,7 +249,8 @@ function AppointCentreForm(props) {
                                 >
                                   <i className="far fa-trash-alt"></i>
                                 </button>
-                              </td>
+                              
+                              </td> */}
                             </tr>
                           ))}
                         </tbody>

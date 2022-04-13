@@ -92,10 +92,10 @@ function App() {
     console.log("insode addTest method");
     setAvailableOrders(order);
   };
-  const [currentTest, setCurrentTest] = useState([]);
-  const addCurrentTest = (order) => {
-    console.log("insode addTest method for currentTest");
-    setCurrentTest(order);
+  const [currentOrders, setcurrentOrders] = useState([]);
+  const addcurrentOrders = (order) => {
+    console.log("insode addTest method for currentOrders");
+    setcurrentOrders(order);
   };
 
   const [cartItems, setCartItems] = useState([]);
@@ -109,6 +109,7 @@ function App() {
           x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
         )
       );
+      console.log(cartItems);
     } else {
       console.log("landed in wrong block");
       setCartItems([...cartItems, { ...product, qty: 1 }]);
@@ -127,6 +128,7 @@ function App() {
       );
     }
   };
+ 
   const removeAll = () => {
     console.log("inside remove all");
     setCartItems([]);
@@ -224,6 +226,7 @@ function App() {
                 onRemove={onRemove}
                 cartItems={cartItems}
                 removeAll={removeAll}
+                
               />
             </Route>
             <Route exact path={About_Us}>
@@ -265,8 +268,8 @@ function App() {
             </PrivateRoute>
             <PrivateRoute exact path={Admin_CurrentTests_table}>
               <CurrentTestsTable
-                currentTest={currentTest}
-                addCurrentTest={addCurrentTest}
+                currentOrders={currentOrders}
+                addcurrentOrders={addcurrentOrders}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Edit_Page}>
@@ -274,8 +277,8 @@ function App() {
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Upload_Report}>
               <AdminUploadReports
-                currentTest={currentTest}
-                addCurrentTest={addCurrentTest}
+                currentOrders={currentOrders}
+                addcurrentOrders={addcurrentOrders}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Users_Table}>

@@ -104,6 +104,11 @@
   padding: 10px 15px;
 }
 
+.contact-clean form .btn-success {
+  background-color: #218838 !important;
+  color: #fff;
+  padding: 10px 15px;
+}
 /* Payment modal */
 .credit-card-box .panel-title {
   font-weight: bold;

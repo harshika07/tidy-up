@@ -13,12 +13,12 @@ function AdminPanel() {
     const fetchData = async () => {
       try {
         db
-          .collection("current_tests")
+          .collection("current_orders")
           .onSnapshot((querySnapshot) => {
             setCurrentTestsCount(querySnapshot.size);
           });
         db
-          .collection("available_tests")
+          .collection("available_orders")
           .onSnapshot((querySnapshot) => {
             setAvailableTestsCount(querySnapshot.size);
           });

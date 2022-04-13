@@ -16,7 +16,7 @@ function GetReport() {
       const response = db
         .collection("users")
         .doc(auth.currentUser.uid)
-        .collection("tests")
+        .collection("orders")
         .onSnapshot((querySnapshot) => {
           getTestsFromFirebase.length = 0;
           setTestsCount(querySnapshot.size);
