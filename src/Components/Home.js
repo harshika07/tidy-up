@@ -123,7 +123,7 @@ function Home() {
               new.
             </p>
             <Link
-              to="/service"
+              to="/Services"
               className="btn action-button"
               type="button"
               style={{
@@ -137,6 +137,7 @@ function Home() {
                 paddingTop: "10px",
                 marginLeft: "0px",
                 paddingLeft: "12px",
+                outline: "none",
               }}
             >
               <strong>Know more</strong>

@@ -4,24 +4,20 @@ import { db } from "../Firebase/Firebase";
 import Sidebar from "./Sidebar";
 
 function AdminPanel() {
-  const [CurrentTestsCount, setCurrentTestsCount] = useState();
-  const [AvailableTestsCount, setAvailableTestsCount] = useState();
+  const [CurrentOrdersCount, setCurrentOrdersCount] = useState();
+  const [AvailableOrdersCount, setAvailableOrdersCount] = useState();
   const [UsersCount, setUsersCount] = useState();
   const [AdminCount, setAdminCount] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        db
-          .collection("current_orders")
-          .onSnapshot((querySnapshot) => {
-            setCurrentTestsCount(querySnapshot.size);
-          });
-        db
-          .collection("available_orders")
-          .onSnapshot((querySnapshot) => {
-            setAvailableTestsCount(querySnapshot.size);
-          });
+        db.collection("current_orders").onSnapshot((querySnapshot) => {
+          setCurrentOrdersCount(querySnapshot.size);
+        });
+        db.collection("available_orders").onSnapshot((querySnapshot) => {
+          setAvailableOrdersCount(querySnapshot.size);
+        });
 
         db.collection("users").onSnapshot((querySnapshot) => {
           let Counter = "";
@@ -72,14 +68,14 @@ function AdminPanel() {
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
                             <div className="text-uppercase text-primary fw-bold text-xs mb-1">
-                              <span>Current Tests Count</span>
+                              <span>Current Orders</span>
                             </div>
                             <div className="text-dark fw-bold h5 mb-0">
-                              <span>{CurrentTestsCount}</span>
+                              <span>{CurrentOrdersCount}</span>
                             </div>
                           </div>
                           <div className="col-auto">
-                            <i className="fas fa-notes-medical fa-2x text-gray-300"></i>
+                            <i className="fas fa-box fa-2x text-gray-300"></i>
                           </div>
                         </div>
                       </div>
@@ -91,14 +87,14 @@ function AdminPanel() {
                         <div className="row align-items-center no-gutters">
                           <div className="col me-2">
                             <div className="text-uppercase text-success fw-bold text-xs mb-1">
-                              <span>Available Tests Count</span>
+                              <span>Available Orders</span>
                             </div>
                             <div className="text-dark fw-bold h5 mb-0">
-                              <span>{AvailableTestsCount}</span>
+                              <span>{AvailableOrdersCount}</span>
                             </div>
                           </div>
                           <div className="col-auto">
-                            <i className="fas fa-file-medical fa-2x text-gray-300"></i>
+                            <i className="fas fa-store fa-2x text-gray-300"></i>
                           </div>
                         </div>
                       </div>
