@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar.js";
 import { db } from "../Firebase/Firebase";
 import { Link } from "react-router-dom";
 
-function AvailableTestsTable(props) {
+function AvailableOrdersTable(props) {
   const { addTest } = props;
   const [orders, setOrders] = useState([]);
   const getOrdersFromFirebase = [];
@@ -152,4 +152,4 @@ function AvailableTestsTable(props) {
   );
 }
 
-export default AvailableTestsTable;
+export default AvailableOrdersTable;

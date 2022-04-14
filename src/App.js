@@ -10,9 +10,9 @@ import ProfilePage from "./Components/ProfilePage";
 import ProfileUpdate from "./Components/ProfileUpdate";
 import ForgotPass from "./Components/ForgotPass";
 import AdminPanel from "./Components/AdminPanel";
-import AvailableTestsTable from "./Components/AvailableTestsTable";
+import AvailableOrdersTable from "./Components/AvailableOrdersTable";
 import UserTable from "./Components/UserTable";
-import CurrentTestsTable from "./Components/CurrentTestsTable";
+import CurrentOrdersTable from "./Components/CurrentOrdersTable";
 import AdminTable from "./Components/AdminTable";
 import Services from "./Components/Services";
 import DryClean from "./Components/DryClean";
@@ -49,9 +49,9 @@ function App() {
   let Profile_Update = "/ProfileUpdate";
   let Forgot_Pass = "/ForgotPass";
   let admin_panel = "/Admin";
-  let Admin_AvailabeTests_table = "/AvailableTests";
+  let Admin_AvailabeOrders_table = "/AvailableOrders";
 
-  let Admin_CurrentTests_table = "/CurrentTests";
+  let Admin_CurrentOrders_table = "/CurrentOrders";
   let Admin_Edit_Page = "/AdminEditPage";
   let Users_Table = "/UsersPage";
   let Admin_Table = "/AdminTable";
@@ -208,14 +208,14 @@ function App() {
               path={admin_panel}
               component={AdminPanel}
             ></AdminRoute>
-            <PrivateRoute exact path={Admin_AvailabeTests_table}>
-              <AvailableTestsTable
+            <PrivateRoute exact path={Admin_AvailabeOrders_table}>
+              <AvailableOrdersTable
                 availableOrders={availableOrders}
-                addTest={addOrder}
+                addOrder={addOrder}
               />
             </PrivateRoute>
-            <PrivateRoute exact path={Admin_CurrentTests_table}>
-              <CurrentTestsTable
+            <PrivateRoute exact path={Admin_CurrentOrders_table}>
+              <CurrentOrdersTable
                 currentOrders={currentOrders}
                 addcurrentOrders={addcurrentOrders}
               />
@@ -223,7 +223,7 @@ function App() {
             <PrivateRoute exact path={Admin_Edit_Page}>
               <AdminEditPage
                 availableOrders={availableOrders}
-                addTest={addOrder}
+                addOrder={addOrder}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Users_Table}>

@@ -21,7 +21,7 @@ function AdminEditPage(props) {
         location: Location.current.value,
         description: Description.current.value,
       });
-      history.push("/AvailableTests");
+      history.push("/AvailableOrders");
     } else {
       CreateOrder(Location.current.value + OrderName.current.value, {
         name: OrderName.current.value,
@@ -29,7 +29,7 @@ function AdminEditPage(props) {
         location: Location.current.value,
         description: Description.current.value,
       });
-      history.push("/AvailableTests");
+      history.push("/AvailableOrders");
     }
   }
 

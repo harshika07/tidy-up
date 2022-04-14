@@ -36,13 +36,13 @@ function Sidebar() {
               </NavItem>
             </div>
             <NavItem className="sidebar-navitem">
-              <Link className="sidebar-link" to="/AvailableTests">
-                Available Tests
+              <Link className="sidebar-link" to="/AvailableOrders">
+                Available Orders
               </Link>
             </NavItem>
             <NavItem className="sidebar-navitem">
-              <Link className="sidebar-link" to="/CurrentTests">
-                Current Tests
+              <Link className="sidebar-link" to="/CurrentOrders">
+                Current Orders
               </Link>
             </NavItem>
 
