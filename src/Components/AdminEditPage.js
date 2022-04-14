@@ -70,7 +70,7 @@ function AdminEditPage(props) {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
-                <Link to="/AvailableTests">Available tests</Link>
+                <Link to="/AvailableOrders">Available orders</Link>
               </li>
 
               <li class="breadcrumb-item active" aria-current="page">
@@ -83,8 +83,8 @@ function AdminEditPage(props) {
             style={{ background: "rgb(248,248,249)" }}
             onSubmit={handleUpload}
           >
-            {availableOrders && <h2 className="text-center">Edit tests</h2>}
-            {!availableOrders && <h2 className="text-center">Add New Test</h2>}
+            {availableOrders && <h2 className="text-center">Edit order</h2>}
+            {!availableOrders && <h2 className="text-center">Add New order</h2>}
 
             <div className="form-group mb-3">
               <input

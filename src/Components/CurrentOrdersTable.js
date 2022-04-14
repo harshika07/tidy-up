@@ -54,7 +54,7 @@ function CurrentOrdersTable(props) {
               <br />
               <div className="card shadow">
                 <div className="card-header py-3">
-                  <p className="text-prximary m-0 fw-bold">Current Tests</p>
+                  <p className="text-prximary m-0 fw-bold">Current Orders</p>
                 </div>
                 <div className="card-body">
                   <div

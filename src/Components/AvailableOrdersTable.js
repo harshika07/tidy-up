@@ -4,7 +4,7 @@ import { db } from "../Firebase/Firebase";
 import { Link } from "react-router-dom";
 
 function AvailableOrdersTable(props) {
-  const { addTest } = props;
+  const { addOrder } = props;
   const [orders, setOrders] = useState([]);
   const getOrdersFromFirebase = [];
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ function AvailableOrdersTable(props) {
               <br />
               <div className="card shadow">
                 <div className="card-header py-3">
-                  <p className="text-prximary m-0 fw-bold">Available Tests</p>
+                  <p className="text-prximary m-0 fw-bold">Available Orders</p>
                 </div>
                 <div className="card-body">
                   <div className="row justify-content-end">
@@ -79,7 +79,7 @@ function AvailableOrdersTable(props) {
                             <button
                               type="button"
                               onClick={() => {
-                                addTest("");
+                                addOrder("");
                                 console.log("after addTest");
                               }}
                               class="btn btn-success align-middle"
@@ -128,7 +128,7 @@ function AvailableOrdersTable(props) {
                               <Link
                                 to="/AdminEditPage"
                                 onClick={() => {
-                                  addTest(item);
+                                  addOrder(item);
                                   console.log("after addTest");
                                 }}
                               >
