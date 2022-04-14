@@ -1,7 +1,7 @@
 import { useState, React, useEffect } from "react";
 import "../css/Services.css";
-import { Link } from "react-router-dom";
-import { useAuth } from "../Firebase/AuthContext";
+// import { Link } from "react-router-dom";
+// import { useAuth } from "../Firebase/AuthContext";
 import { db } from "../Firebase/Firebase";
 
 function DryClean(props) {

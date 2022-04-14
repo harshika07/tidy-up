@@ -1,12 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import "../css/Booking.css";
 import { Link, useHistory } from "react-router-dom";
-import { db, UpdateTest, CreateTest } from "../Firebase/Firebase";
+import { db, UpdateOrder, CreateOrder } from "../Firebase/Firebase";
 
 function AdminEditPage(props) {
   const { availableOrders } = props;
   console.log(availableOrders.id);
-  const TestName = useRef();
+  const OrderName = useRef();
   const Price = useRef();
   const Location = useRef();
   const Description = useRef();
@@ -15,16 +15,16 @@ function AdminEditPage(props) {
   function handleUpload(e) {
     e.preventDefault();
     if (availableOrders) {
-      UpdateTest(availableOrders.id, {
-        name: TestName.current.value,
+      UpdateOrder(availableOrders.id, {
+        name: OrderName.current.value,
         price: Price.current.value,
         location: Location.current.value,
         description: Description.current.value,
       });
       history.push("/AvailableTests");
     } else {
-      CreateTest(Location.current.value + TestName.current.value, {
-        name: TestName.current.value,
+      CreateOrder(Location.current.value + OrderName.current.value, {
+        name: OrderName.current.value,
         price: Price.current.value,
         location: Location.current.value,
         description: Description.current.value,
@@ -33,7 +33,7 @@ function AdminEditPage(props) {
     }
   }
 
-  const [testInfo, setTestInfo] = useState({});
+  const [orderInfo, setOrderInfo] = useState({});
   useEffect(() => {
     if (availableOrders) {
       const fetchData = async () => {
@@ -53,7 +53,7 @@ function AdminEditPage(props) {
             console.log(data);
           }
 
-          setTestInfo(data);
+          setOrderInfo(data);
         } catch (err) {
           console.error(err);
         }
@@ -92,8 +92,8 @@ function AdminEditPage(props) {
                 type="text"
                 name="test name"
                 placeholder="Test Name"
-                ref={TestName}
-                defaultValue={testInfo.name}
+                ref={OrderName}
+                defaultValue={orderInfo.name}
                 required
               />
             </div>
@@ -104,11 +104,11 @@ function AdminEditPage(props) {
                 name="Price"
                 placeholder="Price"
                 ref={Price}
-                defaultValue={testInfo.price}
+                defaultValue={orderInfo.price}
                 required
               />
             </div>
-            {testInfo && (
+            {orderInfo && (
               <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">
                   Location
@@ -134,7 +134,7 @@ function AdminEditPage(props) {
                 placeholder="Description"
                 rows="14"
                 ref={Description}
-                defaultValue={testInfo.description}
+                defaultValue={orderInfo.description}
               ></textarea>
             </div>
             <div className="form-group mb-3">

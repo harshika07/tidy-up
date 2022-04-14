@@ -23,8 +23,8 @@ function Faq(props) {
 
 function Home() {
   const { paymentConfirmed, setPaymentConfirmed, notify } = useAuth();
-  const [tests, setTests] = useState([]);
-  const getTestsFromFirebase = [];
+  const [orders, setOrders] = useState([]);
+  const getOrdersFromFirebase = [];
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log("Reached inside useEffect");
@@ -37,15 +37,15 @@ function Home() {
             querySnapshot.forEach((doc) => {
               if (doc.data().location === "home") {
                 console.log("home found");
-                getTestsFromFirebase.push({
+                getOrdersFromFirebase.push({
                   ...doc.data(),
                   id: doc.id,
                 });
               }
               console.log("reached here");
             });
-            setTests(getTestsFromFirebase);
-            console.log(getTestsFromFirebase);
+            setOrders(getOrdersFromFirebase);
+            console.log(getOrdersFromFirebase);
             setLoading(false);
           });
 

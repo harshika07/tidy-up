@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 
 function AvailableTestsTable(props) {
   const { addTest } = props;
-  const [tests, setTests] = useState([]);
-  const getTestsFromFirebase = [];
+  const [orders, setOrders] = useState([]);
+  const getOrdersFromFirebase = [];
   const [loading, setLoading] = useState(true);
 
   function deleteTest(test) {
     console.log(test.id);
-    db
-      .collection("available_orders")
+    db.collection("available_orders")
       .doc(test.id)
       .delete()
       .then(() => {
@@ -29,15 +28,15 @@ function AvailableTestsTable(props) {
       const response = db
         .collection("available_orders")
         .onSnapshot((querySnapshot) => {
-          getTestsFromFirebase.length = 0;
+          getOrdersFromFirebase.length = 0;
           querySnapshot.forEach((doc) => {
-            getTestsFromFirebase.push({
+            getOrdersFromFirebase.push({
               ...doc.data(), //spread operator
               id: doc.id, // `id` given to us by Firebase
             });
           });
-          setTests(getTestsFromFirebase);
-          console.log(getTestsFromFirebase);
+          setOrders(getOrdersFromFirebase);
+          console.log(getOrdersFromFirebase);
           setLoading(false);
         });
 
@@ -109,7 +108,7 @@ function AvailableTestsTable(props) {
                         </tr>
                       </thead>
                       <tbody>
-                        {tests.map((item) => (
+                        {orders.map((item) => (
                           <tr key={item.id}>
                             <td class="text-center">{item.name}</td>
                             <td class="text-center">{item.description}</td>

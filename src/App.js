@@ -79,7 +79,7 @@ function App() {
   };
 
   const [availableOrders, setAvailableOrders] = useState([]);
-  const addTest = (order) => {
+  const addOrder = (order) => {
     console.log("insode addTest method");
     setAvailableOrders(order);
   };
@@ -211,7 +211,7 @@ function App() {
             <PrivateRoute exact path={Admin_AvailabeTests_table}>
               <AvailableTestsTable
                 availableOrders={availableOrders}
-                addTest={addTest}
+                addTest={addOrder}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_CurrentTests_table}>
@@ -223,7 +223,7 @@ function App() {
             <PrivateRoute exact path={Admin_Edit_Page}>
               <AdminEditPage
                 availableOrders={availableOrders}
-                addTest={addTest}
+                addTest={addOrder}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Users_Table}>

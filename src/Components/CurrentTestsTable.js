@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 function CurrentTestsTable(props) {
   const { addcurrentOrders } = props;
-  const [tests, setTests] = useState([]);
-  const getTestsFromFirebase = [];
+  const [orders, setOrders] = useState([]);
+  const getOrdersFromFirebase = [];
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     console.log("Reached inside useEffect");
@@ -18,15 +18,15 @@ function CurrentTestsTable(props) {
             console.log("Collection found");
             querySnapshot.forEach((doc) => {
               console.log("home found");
-              getTestsFromFirebase.push({
+              getOrdersFromFirebase.push({
                 ...doc.data(), //spread operator
                 id: doc.id, // `id` given to us by Firebase
               });
 
               console.log("reached here");
             });
-            setTests(getTestsFromFirebase);
-            console.log(getTestsFromFirebase);
+            setOrders(getOrdersFromFirebase);
+            console.log(getOrdersFromFirebase);
             setLoading(false);
           });
 
@@ -76,13 +76,13 @@ function CurrentTestsTable(props) {
                         </tr>
                       </thead>
                       <tbody>
-                        {tests.map((item) => (
+                        {orders.map((item) => (
                           <tr key={item.id}>
                             <td class="text-center">{item.name}</td>
                             <td class="text-center">{item.email}</td>
                             <td class="text-center">{item.date}</td>
                             <td class="text-center">{item.slot}</td>
-                            <td class="text-center">{item.testname}</td>
+                            <td class="text-center">{item.ordername}</td>
                             <td class="text-center">{item.location}</td>
                             <td class="text-center">{item.quantity}</td>
                           </tr>

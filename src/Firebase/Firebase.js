@@ -12,9 +12,9 @@ export const firestore = app.firestore();
 export const db = firebase.firestore();
 export const storage = app.storage();
 
-const GoogleProvider = new firebase.auth.GoogleAuthProvider();
-GoogleProvider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
+// const GoogleProvider = new firebase.auth.GoogleAuthProvider();
+// GoogleProvider.setCustomParameters({ prompt: "select_account" });
+// export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
 
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
@@ -45,27 +45,34 @@ export async function createUser(userId, user) {
   }
 }
 
-export async function AddNewTestForUser(userId, TestInfo, quantity, location,userInfo,) {
+export async function AddNewOrderForUser(
+  userId,
+  OrderInfo,
+  quantity,
+  location,
+  userInfo
+) {
   try {
-    // console.log("creating doc with " + userId);
     var today = new Date();
     var time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    // console.log(time);
-    // console.log(userId + time + TestInfo.name);
-    // console.log(userInfo, TestInfo);
+
     await db
       .collection("users")
       .doc(userId)
       .collection("orders")
-      .doc(userId + time + TestInfo.name)
-      .set(userInfo, TestInfo, quantity, location);
+      .doc(userId + time + OrderInfo.name)
+      .set(userInfo, OrderInfo, quantity, location);
     await db
       .collection("users")
       .doc(userId)
       .collection("orders")
-      .doc(userId + time + TestInfo.name)
-      .update({ testname: TestInfo.name, quantity: quantity, location: location });
+      .doc(userId + time + OrderInfo.name)
+      .update({
+        ordername: OrderInfo.name,
+        quantity: quantity,
+        location: location,
+      });
     // console.log(response);
     // console.log("this worked in users");
   } catch (err) {
@@ -73,31 +80,38 @@ export async function AddNewTestForUser(userId, TestInfo, quantity, location,use
   }
 }
 
-export async function AddNewTestForAdmin(userId, TestInfo,quantity,location, userInfo) {
+export async function AddNewOrderForAdmin(
+  userId,
+  OrderInfo,
+  quantity,
+  location,
+  userInfo
+) {
   try {
     // console.log("creating doc with " + userId);
     var today = new Date();
     var time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    // console.log(time);
-    // console.log(userId + time + TestInfo.name);
-    // console.log(userInfo, TestInfo);
+
     await db
       .collection("current_orders")
-      .doc(userId + time + TestInfo.name)
-      .set(userInfo, TestInfo, location,quantity);
-    // console.log(response);
-    // console.log("this worked in admin");
+      .doc(userId + time + OrderInfo.name)
+      .set(userInfo, OrderInfo, location, quantity);
+
     await db
       .collection("current_orders")
-      .doc(userId + time + TestInfo.name)
-      .update({ testname: TestInfo.name, quantity: quantity, location: location });
+      .doc(userId + time + OrderInfo.name)
+      .update({
+        ordername: OrderInfo.name,
+        quantity: quantity,
+        location: location,
+      });
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function CreateTest(docId, data) {
+export async function CreateOrder(docId, data) {
   try {
     // console.log("creating data with " + docId);
     await db.collection("available_orders").doc(docId).set(data);
@@ -106,7 +120,7 @@ export async function CreateTest(docId, data) {
   }
 }
 
-export async function UpdateTest(docId, data) {
+export async function UpdateOrder(docId, data) {
   try {
     console.log("updating data with " + docId);
     await db.collection("available_orders").doc(docId).update(data);

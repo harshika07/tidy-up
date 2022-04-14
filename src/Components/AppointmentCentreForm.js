@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../Firebase/AuthContext";
 import { useState, useEffect } from "react";
 import { db, auth } from "../Firebase/Firebase";
-import { AddNewTestForUser, AddNewTestForAdmin } from "../Firebase/Firebase";
+import { AddNewOrderForUser, AddNewOrderForAdmin } from "../Firebase/Firebase";
 import { Modal, InputGroup, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -53,8 +53,20 @@ function AppointCentreForm(props) {
         userId: auth.currentUser.uid,
       };
       cartItems.forEach((item) => {
-        AddNewTestForUser(auth.currentUser.uid, item, item.qty, item.location, userInfo);
-        AddNewTestForAdmin(auth.currentUser.uid, item, item.qty, item.location, userInfo);
+        AddNewOrderForUser(
+          auth.currentUser.uid,
+          item,
+          item.qty,
+          item.location,
+          userInfo
+        );
+        AddNewOrderForAdmin(
+          auth.currentUser.uid,
+          item,
+          item.qty,
+          item.location,
+          userInfo
+        );
       });
       removeAll();
       setPaymentConfirmed(true);
