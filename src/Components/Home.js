@@ -31,7 +31,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const response = db
-          .collection("available_tests")
+          .collection("available_orders")
           .onSnapshot((querySnapshot) => {
             console.log("Collection found");
             querySnapshot.forEach((doc) => {

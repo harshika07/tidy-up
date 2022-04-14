@@ -90,8 +90,8 @@ function AdminEditPage(props) {
               <input
                 className="form-control"
                 type="text"
-                name="test name"
-                placeholder="Test Name"
+                name="order name"
+                placeholder="order Name"
                 ref={OrderName}
                 defaultValue={orderInfo.name}
                 required

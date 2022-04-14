@@ -9,10 +9,10 @@ function AvailableOrdersTable(props) {
   const getOrdersFromFirebase = [];
   const [loading, setLoading] = useState(true);
 
-  function deleteTest(test) {
-    console.log(test.id);
+  function deleteOrder(order) {
+    console.log(order.id);
     db.collection("available_orders")
-      .doc(test.id)
+      .doc(order.id)
       .delete()
       .then(() => {
         console.log("Document successfully deleted!");
@@ -120,7 +120,7 @@ function AvailableOrdersTable(props) {
                                 type="button"
                                 class="btn btn-danger"
                                 onClick={() => {
-                                  deleteTest(item);
+                                  deleteOrder(item);
                                 }}
                               >
                                 <i class="far fa-trash-alt"></i>

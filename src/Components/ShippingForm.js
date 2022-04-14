@@ -218,7 +218,7 @@ function ShippingForm(props) {
             {cartItems.length === 0 && (
               <div className="form-group mb-3">
                 <Link className="btn btn-danger mt-3" to="/dryclean">
-                  Select atleast one test
+                  Select atleast one product
                 </Link>
               </div>
             )}
