@@ -66,12 +66,13 @@ function CurrentTestsTable(props) {
                     <table className="table my-0" id="dataTable">
                       <thead>
                         <tr align="center">
-                          <th>Patient Name</th>
+                          <th>Customer Name</th>
                           <th>Email</th>
                           <th>Date</th>
                           <th>Slot</th>
+                          <th>Product</th>
                           <th>Location</th>
-                          <th>Actions</th>
+                          <th>Qty.</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -81,21 +82,9 @@ function CurrentTestsTable(props) {
                             <td class="text-center">{item.email}</td>
                             <td class="text-center">{item.date}</td>
                             <td class="text-center">{item.slot}</td>
+                            <td class="text-center">{item.testname}</td>
                             <td class="text-center">{item.location}</td>
-
-                            <td className="text-center">
-                              <Link
-                                type="button"
-                                class="btn btn-success"
-                                to="/report"
-                                onClick={() => {
-                                  addcurrentOrders(item);
-                                  console.log("after addTest");
-                                }}
-                              >
-                                <i class="far fa-edit"></i>
-                              </Link>
-                            </td>
+                            <td class="text-center">{item.quantity}</td>
                           </tr>
                         ))}{" "}
                       </tbody>

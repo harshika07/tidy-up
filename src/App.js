@@ -1,9 +1,7 @@
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
-import AppointmentHome from "./Components/AppointmentHome";
-import AppointHomeForm from "./Components/AppointHomeForm";
-import AppointmentCentre from "./Components/AppointmentCentre";
+
 import AppointCentreForm from "./Components/AppointmentCentreForm";
 import AboutUs from "./Components/AboutUs";
 import Register from "./Components/Register";
@@ -15,7 +13,6 @@ import AdminPanel from "./Components/AdminPanel";
 import AvailableTestsTable from "./Components/AvailableTestsTable";
 import UserTable from "./Components/UserTable";
 import CurrentTestsTable from "./Components/CurrentTestsTable";
-import GetReport from "./Components/GetReport";
 import AdminTable from "./Components/AdminTable";
 import Services from "./Components/Services";
 import DryClean from "./Components/DryClean";
@@ -25,22 +22,19 @@ import Laundry from "./Components/Laundry";
 
 import AdminEditPage from "./Components/AdminEditPage";
 
-import AdminUploadReports from "./Components/AdminUploadReports";
 import NotFound from "./Components/NotFound";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./Firebase/AuthContext";
 import PrivateRoute from "./Router/PrivateRoute";
 import AdminRoute from "./Router/AdminRoute";
-import data from "./Assets/data";
+
 import { db } from "./Firebase/Firebase";
 import "../src/css/Footer.css";
 
 function App() {
   let Homepage = "/";
-  let Book_Appointment_Home = "/AppointmentHome";
-  let Appointment_Home_Form = "/AppointHomeForm";
-  let Book_Appointment_Centre = "/AppointmentCentre";
+
   let Appointment_Centre_Form = "/AppointCentreForm";
   let Service_Page = "/Services";
   let DryClean_Page = "/dryclean";
@@ -48,7 +42,7 @@ function App() {
   let Wash_Page = "/wash";
   let Iron_Page = "/iron";
   let About_Us = "/AboutUs";
-  let Get_Report = "/GetReport";
+
   let Register_User = "/Register";
   let Login_User = "/Login";
   let Profilepage = "/ProfilePage";
@@ -61,8 +55,6 @@ function App() {
   let Admin_Edit_Page = "/AdminEditPage";
   let Users_Table = "/UsersPage";
   let Admin_Table = "/AdminTable";
-
-  let Admin_Upload_Report = "/report";
 
   const [role, setRole] = useState("user");
   const getRole = async (userId) => {
@@ -86,7 +78,6 @@ function App() {
     }
   };
 
-  const { products } = data;
   const [availableOrders, setAvailableOrders] = useState([]);
   const addTest = (order) => {
     console.log("insode addTest method");
@@ -114,7 +105,6 @@ function App() {
       console.log("landed in wrong block");
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
-    
   };
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -128,7 +118,7 @@ function App() {
       );
     }
   };
- 
+
   const removeAll = () => {
     console.log("inside remove all");
     setCartItems([]);
@@ -139,35 +129,13 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header 
-          cartItems={cartItems}
-          />
+          <Header cartItems={cartItems} />
           <Switch>
             <Route exact path={Homepage}>
               <Home />
             </Route>
-
-            <Route exact path={Book_Appointment_Home}>
-              <AppointmentHome
-                products={products}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                cartItems={cartItems}
-                removeAll={removeAll}
-              />
-            </Route>
-            <Route exact path={Appointment_Home_Form}>
-              <AppointHomeForm
-                products={products}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                cartItems={cartItems}
-                removeAll={removeAll}
-              />
-            </Route>
             <Route exact path={Service_Page}>
               <Services
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
@@ -176,7 +144,6 @@ function App() {
             </Route>
             <Route exact path={Laundry_Page}>
               <Laundry
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
@@ -185,7 +152,6 @@ function App() {
             </Route>
             <Route exact path={Iron_Page}>
               <Iron
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
@@ -194,7 +160,6 @@ function App() {
             </Route>
             <Route exact path={DryClean_Page}>
               <DryClean
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
@@ -203,16 +168,6 @@ function App() {
             </Route>
             <Route exact path={Wash_Page}>
               <Wash
-                products={products}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                cartItems={cartItems}
-                removeAll={removeAll}
-              />
-            </Route>
-            <Route exact path={Book_Appointment_Centre}>
-              <AppointmentCentre
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
@@ -221,12 +176,10 @@ function App() {
             </Route>
             <Route exact path={Appointment_Centre_Form}>
               <AppointCentreForm
-                products={products}
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
                 removeAll={removeAll}
-                
               />
             </Route>
             <Route exact path={About_Us}>
@@ -250,11 +203,6 @@ function App() {
               component={ProfileUpdate}
             ></PrivateRoute>
             <Route exact path={Forgot_Pass} component={ForgotPass}></Route>
-            <PrivateRoute
-              exact
-              path={Get_Report}
-              component={GetReport}
-            ></PrivateRoute>
             <AdminRoute
               exact
               path={admin_panel}
@@ -273,12 +221,9 @@ function App() {
               />
             </PrivateRoute>
             <PrivateRoute exact path={Admin_Edit_Page}>
-              <AdminEditPage availableOrders={availableOrders} addTest={addTest} />
-            </PrivateRoute>
-            <PrivateRoute exact path={Admin_Upload_Report}>
-              <AdminUploadReports
-                currentOrders={currentOrders}
-                addcurrentOrders={addcurrentOrders}
+              <AdminEditPage
+                availableOrders={availableOrders}
+                addTest={addTest}
               />
             </PrivateRoute>
             <PrivateRoute exact path={Users_Table}>
