@@ -5,27 +5,27 @@ import { useAuth } from "../Firebase/AuthContext";
 import { useState, useEffect } from "react";
 import { db, auth } from "../Firebase/Firebase";
 import { AddNewOrderForUser, AddNewOrderForAdmin } from "../Firebase/Firebase";
-import { Modal, InputGroup, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AppointCentreForm(props) {
+function ShippingForm(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { cartItems, onRemove, removeAll,onAdd } = props;
+  const { cartItems, onRemove, removeAll, onAdd } = props;
   const { currentUser, setPaymentConfirmed } = useAuth();
 
   let total = 0;
-  function Add(price,item) {
-    total = parseInt(total) + parseInt(price)*item.qty;
+  function Add(price, item) {
+    total = parseInt(total) + parseInt(price) * item.qty;
   }
-  function Subtract(price,item) {
-    total = parseInt(total) - parseInt(price)*item.qty;
+  function Subtract(price, item) {
+    total = parseInt(total) - parseInt(price) * item.qty;
   }
-  
+
   const [loading, setLoading] = useState(false);
 
   const nameRef = useRef();
@@ -244,11 +244,27 @@ function AppointCentreForm(props) {
                             <tr key={item.id}>
                               <td>{item.name}</td>
                               <td>&#x20b9;{item.price}</td>
-                              <button type="button"className="btn btn-danger" onClick={()=>{ onRemove(item)}}><i className="fa fa-minus"></i></button>  
+                              <button
+                                type="button"
+                                className="btn btn-danger"
+                                onClick={() => {
+                                  onRemove(item);
+                                }}
+                              >
+                                <i className="fa fa-minus"></i>
+                              </button>
                               <span id="counting">{item.qty}</span>
-                              <button type="button"className="btn btn-success" onClick={()=>{onAdd(item)}}><i className="fa fa-plus"></i></button>  
+                              <button
+                                type="button"
+                                className="btn btn-success"
+                                onClick={() => {
+                                  onAdd(item);
+                                }}
+                              >
+                                <i className="fa fa-plus"></i>
+                              </button>
                               {console.log(total)}
-                              {Add(item.price,item)}
+                              {Add(item.price, item)}
                               {/* <td className="text-center">
                                 <button
                                   type="button"
@@ -378,4 +394,4 @@ function AppointCentreForm(props) {
   );
 }
 
-export default AppointCentreForm;
+export default ShippingForm;

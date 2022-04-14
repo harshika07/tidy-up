@@ -58,7 +58,7 @@ function Header(props) {
                 </Link>
               )}
               {currentUser && (
-                <Link to="/AppointCentreForm">
+                <Link to="/ShippingForm">
                   <button className="btn btn-primary">
                     Added {cartItems.length} to cart
                     {console.log("cartLength " + cartItems.length)}

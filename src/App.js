@@ -2,7 +2,7 @@ import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
 
-import AppointCentreForm from "./Components/AppointmentCentreForm";
+import ShippingForm from "./Components/ShippingForm";
 import AboutUs from "./Components/AboutUs";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
@@ -35,7 +35,7 @@ import "../src/css/Footer.css";
 function App() {
   let Homepage = "/";
 
-  let Appointment_Centre_Form = "/AppointCentreForm";
+  let Shipping_Form = "/ShippingForm";
   let Service_Page = "/Services";
   let DryClean_Page = "/dryclean";
   let Laundry_Page = "/laundry";
@@ -174,8 +174,8 @@ function App() {
                 removeAll={removeAll}
               />
             </Route>
-            <Route exact path={Appointment_Centre_Form}>
-              <AppointCentreForm
+            <Route exact path={Shipping_Form}>
+              <ShippingForm
                 onAdd={onAdd}
                 onRemove={onRemove}
                 cartItems={cartItems}
