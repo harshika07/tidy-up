@@ -11,8 +11,14 @@ import lead from "../Assets/img/lead.jpg";
 function Faq(props) {
   return (
     <div>
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey={props.eventKey}>
+      <Accordion
+        defaultActiveKey="0"
+        style={{ fontFamily: "Sora, sans-serif" }}
+      >
+        <Accordion.Item
+          eventKey={props.eventKey}
+          style={{ font: "Sora, sans-serif" }}
+        >
           <Accordion.Header>{props.AccordionHeader}</Accordion.Header>
           <Accordion.Body>{props.AccordionBody}</Accordion.Body>
         </Accordion.Item>
@@ -186,13 +192,11 @@ function Home() {
             </div>
             <div className="col-sm-6 col-lg-4 item">
               <i
-                className="far fa-credit-card icon"
+                className="fas fa-tshirt icon"
                 style={{ color: "#3552c8" }}
               ></i>
-              <h3 className="name">Germ-free</h3>
-              <p className="description">
-                Hygienic and sanitised environment and tools
-              </p>
+              <h3 className="name">Professional Care</h3>
+              <p className="description">Professional care for your clothes</p>
             </div>
             <div className="col-sm-6 col-lg-4 item">
               <i
@@ -277,10 +281,26 @@ function Home() {
             className="col"
             style={{ paddingTop: "30px", marginRight: "20px" }}
           >
-            <Faq eventKey={1} />
-            <Faq eventKey={2} />
-            <Faq eventKey={3} />
-            <Faq eventKey={4} />
+            <Faq
+              eventKey={1}
+              AccordionHeader="How long does it take for delivery?"
+              AccordionBody="The delivery and pickup is both done at the scheduled time choosen at the time of shipping. If not then customers are informed in advance"
+            />
+            <Faq
+              eventKey={2}
+              AccordionHeader="Is COD available?"
+              AccordionBody="No. As of now COD is not available for any service."
+            />
+            <Faq
+              eventKey={3}
+              AccordionHeader="Free delivery and pickup on all products?"
+              AccordionBody="Yes. Our Policy sticks to free of charge delivery as well as pickup for all types of services and its products"
+            />
+            <Faq
+              eventKey={4}
+              AccordionHeader="Can you cancel booked service?"
+              AccordionBody="No. Cancellation of booking cannot take place since the pickup process starts as soon as the order is placed"
+            />
           </div>
         </div>
       </section>
