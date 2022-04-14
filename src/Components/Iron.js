@@ -1,7 +1,55 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "../css/Services.css";
+import { db } from "../Firebase/Firebase";
 
-function Iron() {
+function Iron(props) {
+  const { onAdd, onRemove, cartItems } = props;
+
+  const [orders, setOrders] = useState([]);
+
+  const getIronFromFirebase = [];
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    console.log("Reached inside useEffect");
+    const fetchData = async () => {
+      try {
+        const response = db
+          .collection("available_orders")
+          .onSnapshot((querySnapshot) => {
+            console.log("Collection found");
+            querySnapshot.forEach((doc) => {
+              console.log(doc);
+              if (doc.data().location === "iron") {
+                console.log("iron found");
+                getIronFromFirebase.push({
+                  ...doc.data(), //spread operator
+                  id: doc.id, // `id` given to us by Firebase
+                });
+              }
+              console.log("reached in iron");
+            });
+            setOrders(getIronFromFirebase);
+            console.log(getIronFromFirebase);
+            setLoading(false);
+          });
+
+        console.log("response", response);
+
+        if (response.exists) {
+          console.log("found it");
+        }
+
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div>
       <section
@@ -10,30 +58,52 @@ function Iron() {
       >
         <div className="container">
           <div className="row justify-content-center features">
-            <div className="col-sm-6 col-md-5 col-lg-4 item">
+            {orders.map((order) => (
               <div
-                className="box"
-                style={{
-                  borderTopColor: "rgb(80,94,108)",
-                  borderRadius: "10px",
-                }}
+                className="col-sm-6 col-md-5 col-lg-4 item"
+                key={order.id}
+                product={order}
               >
-               
-                <h3 className="name">tshirt</h3>
-                <p>&#x20b9;200</p>
-                <button
-                  className="btn btn-primary"
-                  type="button"
+                <div
+                  className="box"
                   style={{
-                    fontFamily: "Sora, sans-serif",
-                    color: "#ffffff",
-                    background: "#3552c8",
+                    borderTopColor: "rgb(80,94,108)",
+                    borderRadius: "10px",
                   }}
                 >
-                  Add
-                </button>
+                  <h3 className="name">{order.name}</h3>
+                  <p>&#x20b9;{order.price}</p>
+
+                  {!cartItems.find((x) => x.id === order.id) && (
+                    <button
+                      className="btn btn-primary"
+                      type="button"
+                      style={{
+                        fontFamily: "Sora, sans-serif",
+                        color: "#ffffff",
+                        background: "#3552c8",
+                      }}
+                      onClick={() => {
+                        onAdd(order);
+                        console.log(order);
+                        console.log(cartItems.length);
+                      }}
+                    >
+                      Add
+                    </button>
+                  )}
+                  {cartItems.find((x) => x.id === order.id) && (
+                    <button
+                      className="btn btn-danger add"
+                      type="button"
+                      onClick={() => onRemove(order)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
