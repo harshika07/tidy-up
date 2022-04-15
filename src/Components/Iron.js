@@ -56,6 +56,11 @@ function Iron(props) {
         className="features-boxed"
         style={{ fontFamily: "Sora, sans-serif", background: "#e3ebff" }}
       >
+        <div className="intro">
+          <h2 className="text-center" style={{ color: "#3552c8" }}>
+            Per Piece Price
+          </h2>
+        </div>
         <div className="container">
           <div className="row justify-content-center features">
             {orders.map((order) => (

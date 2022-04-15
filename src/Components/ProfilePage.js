@@ -118,20 +118,6 @@ function ProfilePage() {
                             />
                           </div>
                         </div>
-
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div className="form-group">
-                            <label Htmlfor="gender">Gender</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="gender"
-                              placeholder="Gender"
-                              value={ProfileInfo.gender}
-                              disabled="true"
-                            />
-                          </div>
-                        </div>
                       </div>
                       <div className="row gutters">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -146,18 +132,6 @@ function ProfilePage() {
                             value={ProfileInfo.address}
                             disabled="true"
                           ></textarea>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div className="form-group">
-                            <label Htmlfor="zIp">Zip Code</label>
-                            <input
-                              type="text"
-                              className="form-control mb-3"
-                              id="zIp"
-                              value={ProfileInfo.zipcode}
-                              disabled="true"
-                            />
-                          </div>
                         </div>
                       </div>
                       <div className="row gutters">

@@ -133,7 +133,7 @@ function ShippingForm(props) {
             onSubmit={showModal1}
             style={{ background: "rgb(248,248,249)" }}
           >
-            <h2 className="text-center">Centre Visit</h2>
+            <h2 className="text-center">Shipping Details</h2>
             <div className="form-group mb-3">
               <input
                 className="form-control"
@@ -143,6 +143,7 @@ function ShippingForm(props) {
                 defaultValue={ProfileInfo.displayName}
                 ref={nameRef}
                 disabled={true}
+                required
               />
             </div>
 
@@ -155,6 +156,7 @@ function ShippingForm(props) {
                 defaultValue={currentUser.email}
                 disabled={true}
                 ref={emailRef}
+                required
               />
             </div>
             <div className="form-group mb-3">
@@ -176,6 +178,7 @@ function ShippingForm(props) {
                 placeholder="Address"
                 rows="14"
                 ref={addressRef}
+                required
                 defaultValue={ProfileInfo.address}
               ></textarea>
             </div>

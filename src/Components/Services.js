@@ -16,7 +16,12 @@ const ServiceCard = (props) => {
       >
         <img className="img-fluid" src={props.ServiceImg} alt="" />
         <h3 className="name">{props.ServiceHeading}</h3>
-        <Link to={{ pathname: `${props.Category}` }}>Proceed</Link>
+        <Link
+          to={{ pathname: `${props.Category}` }}
+          style={{ color: "#3552c8", textDecoration: "none" }}
+        >
+          Proceed
+        </Link>
       </div>
     </div>
   );

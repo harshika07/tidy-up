@@ -9,8 +9,7 @@ function Header(props) {
   const { cartItems } = props;
   let Homepage = "/";
   let Service_Page = "/Services";
-  // let Book_Appointment_Home = "/AppointmentHome";
-  // let Get_Report = "/GetReport";
+
   let About_Us = "/AboutUs";
   let Login_User = "/Login";
   let Profilepage = "/ProfilePage";
@@ -27,9 +26,10 @@ function Header(props) {
           <Link className="nav-item nav-link" to={Homepage}>
             <img className="img-responsive" src={logo} alt="brand logo" />
           </Link>
+
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
-            className="navbar-toggler"
+            className="navbar-toggler float-end"
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
@@ -49,26 +49,39 @@ function Header(props) {
               )}
               {!currentUser && (
                 <Link className="nav-item  nav-link" to={Login_User}>
-                  Login / Sign Up
+                  Login
                 </Link>
               )}
               {currentUser && (
                 <Link className="nav-item  nav-link" to={Profilepage}>
-                  Profile Page
+                  Profile
                 </Link>
               )}
               {currentUser && (
                 <Link to="/ShippingForm">
-                  <button className="btn btn-primary">
-                    Added {cartItems.length} to cart
+                  <button
+                    className="btn btn-danger"
+                    style={{
+                      background: "#3552c8",
+                      border: "none",
+                      outline: "0",
+                      boxShadow: "none",
+                    }}
+                  >
+                    {cartItems.length}
+                    <i className="fas fa-shopping-cart text-white"></i>{" "}
                     {console.log("cartLength " + cartItems.length)}
                   </button>
                 </Link>
               )}
               {!currentUser && (
                 <Link to="/Login">
-                  <button className="btn btn-danger">
-                    Added {cartItems.length} to cart. Login To Continue!
+                  <button
+                    className="btn btn-danger"
+                    style={{ border: "none", outline: "0", boxShadow: "none" }}
+                  >
+                    <i className="fas fa-shopping-cart text-white"></i>{" "}
+                    {cartItems.length}
                     {console.log("cartLength " + cartItems.length)}
                   </button>
                 </Link>

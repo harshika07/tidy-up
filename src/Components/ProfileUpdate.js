@@ -42,9 +42,7 @@ function ProfileUpdate() {
       displayName: nameRef.current.value,
       email: emailRef.current.value,
       phone: phoneRef.current.value,
-      gender: genderRef.current.value,
       address: addressRef.current.value,
-      zipcode: zipcodeRef.current.value,
     });
 
     if (auth.currentUser.displayName !== nameRef.current.value) {
@@ -158,27 +156,6 @@ function ProfileUpdate() {
                             />
                           </div>
                         </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div className="form-group">
-                            <label for="website">Gender</label>
-                            {ProfileInfo.gender && (
-                              <div class="input-group mb-3">
-                                <select
-                                  class="form-select"
-                                  id="inputGroupSelect01"
-                                  required
-                                  ref={genderRef}
-                                  defaultValue={ProfileInfo.gender}
-                                >
-                                  <option value="Choose...">Choose...</option>
-                                  <option value="Male">Male</option>
-                                  <option value="Female">Female</option>
-                                  <option value="Others">Others</option>
-                                </select>
-                              </div>
-                            )}
-                          </div>
-                        </div>
                       </div>
                       <div className="row gutters">
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -193,19 +170,6 @@ function ProfileUpdate() {
                             defaultValue={ProfileInfo.address}
                             ref={addressRef}
                           ></textarea>
-                        </div>
-                        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                          <div className="form-group">
-                            <label for="zIp">Zip Code</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              id="zIp"
-                              placeholder="Zip Code"
-                              defaultValue={ProfileInfo.zipcode}
-                              ref={zipcodeRef}
-                            />
-                          </div>
                         </div>
                       </div>
                       <div className="row gutters">
